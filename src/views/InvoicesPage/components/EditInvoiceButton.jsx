@@ -12,7 +12,7 @@ export function EditInvoiceButton({ invoice }) {
         onClick={() =>
           history.push({
             pathname: ROUTER_PATH.EDIT_INVOICE,
-            state: { invoice: invoice },
+            state: { invoice },
           })
         }
       >

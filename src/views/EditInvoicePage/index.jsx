@@ -1,5 +1,15 @@
 import React from 'react'
 
-export function EditInvoicePage() {
-  return <div>Edit Invoice</div>
+import { InvoiceForm } from '../../components/InvoiceForm'
+
+export function EditInvoicePage({
+  location: {
+    state: { invoice },
+  },
+}) {
+  return (
+    <div>
+      <InvoiceForm invoice={invoice} />
+    </div>
+  )
 }

@@ -10,7 +10,7 @@ export function InvoicesPage() {
 
   useEffect(() => {
     setInvoices(getInvoices())
-  }, [getInvoices])
+  }, [])
 
   return (
     <div>

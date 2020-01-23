@@ -1,5 +1,11 @@
 import React from 'react'
 
+import { InvoiceForm } from '../../components/InvoiceForm'
+
 export function CreateInvoicePage() {
-  return <div>Create Invoice</div>
+  return (
+    <div>
+      <InvoiceForm />
+    </div>
+  )
 }
