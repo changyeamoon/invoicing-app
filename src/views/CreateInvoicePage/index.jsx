@@ -1,5 +1,5 @@
 import React from 'react'
 
-export function CreateInvoice() {
+export function CreateInvoicePage() {
   return <div>Create Invoice</div>
 }

@@ -1,5 +1,5 @@
 import React from 'react'
 
-export function EditInvoice() {
+export function EditInvoicePage() {
   return <div>Edit Invoice</div>
 }
