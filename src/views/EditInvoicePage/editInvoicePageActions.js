@@ -1,8 +1,12 @@
-import mockInvoices from '../../mockInvoices.json'
+import mockInvoices from '../../utils/mockInvoices.json'
 
-import { INVOICE_ACTION, ROUTER_PATH } from '../../constants'
+import { INVOICE_ACTION, ROUTER_PATH } from '../../utils/constants'
 
-export async function deleteInvoice(dispatch, invoice, history) {
+export async function deleteInvoice(
+  dispatch,
+  deletedInvoice,
+  history
+) {
   dispatch({
     type: INVOICE_ACTION.SET_IS_DELETING_INVOICE,
     payload: { isDeletingInvoice: true },
@@ -12,7 +16,7 @@ export async function deleteInvoice(dispatch, invoice, history) {
   await new Promise(resolve => setTimeout(resolve, 1000))
   // do DELETE api stuff
   const invoiceIndex = mockInvoices.findIndex(
-    mockInvoice => mockInvoice.id === invoice.id
+    mockInvoice => mockInvoice.id === deletedInvoice.id
   )
   mockInvoices.splice(invoiceIndex, 1)
 
@@ -20,6 +24,6 @@ export async function deleteInvoice(dispatch, invoice, history) {
 
   dispatch({
     type: INVOICE_ACTION.DELETE_INVOICE,
-    payload: { deletedInvoice: invoice },
+    payload: { deletedInvoice },
   })
 }

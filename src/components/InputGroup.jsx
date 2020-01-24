@@ -7,6 +7,7 @@ export function InputGroup({
   inputName,
   inputId,
   value,
+  onChange,
 }) {
   return (
     <div>
@@ -16,6 +17,7 @@ export function InputGroup({
         name={inputName}
         id={inputId}
         value={value}
+        onChange={onChange}
       />
     </div>
   )

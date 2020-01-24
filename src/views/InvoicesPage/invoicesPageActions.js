@@ -1,6 +1,6 @@
-import mockInvoices from '../../mockInvoices.json'
+import mockInvoices from '../../utils/mockInvoices.json'
 
-import { INVOICE_ACTION } from '../../constants'
+import { INVOICE_ACTION } from '../../utils/constants'
 
 export async function getAndStoreInvoices(dispatch) {
   dispatch({
@@ -11,7 +11,7 @@ export async function getAndStoreInvoices(dispatch) {
   // mimic fetching time
   await new Promise(resolve => setTimeout(resolve, 1000))
   // do GET api stuff
-  const invoices = mockInvoices.slice(0, 5)
+  const invoices = mockInvoices.slice()
 
   dispatch({
     type: INVOICE_ACTION.ADD_INVOICES,

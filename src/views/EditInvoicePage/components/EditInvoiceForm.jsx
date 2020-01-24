@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { InputGroup } from '../../../components/InputGroup'
@@ -9,6 +9,8 @@ export function EditInvoiceForm({
   deleteInvoice,
   isDeletingInvoice,
 }) {
+  const [editInvoiceForm, setEditInvoiceForm] = useState(invoice)
+
   const history = useHistory()
 
   if (isDeletingInvoice) {
@@ -24,6 +26,12 @@ export function EditInvoiceForm({
         inputName="name"
         inputId="name"
         value={invoice.name}
+        onChange={e =>
+          setEditInvoiceForm({
+            ...editInvoiceForm,
+            name: e.target.value,
+          })
+        }
       />
       <InputGroup
         htmlFor="email"
@@ -32,6 +40,12 @@ export function EditInvoiceForm({
         inputName="email"
         inputId="email"
         value={invoice.email}
+        onChange={e =>
+          setEditInvoiceForm({
+            ...editInvoiceForm,
+            email: e.target.value,
+          })
+        }
       />
       <InputGroup
         htmlFor="dueDate"
@@ -40,6 +54,12 @@ export function EditInvoiceForm({
         inputName="dueDate"
         inputId="dueDate"
         value={invoice.dueDate}
+        onChange={e =>
+          setEditInvoiceForm({
+            ...editInvoiceForm,
+            dueDate: e.target.value,
+          })
+        }
       />
       <EditInvoiceItemsForm />
       <div>

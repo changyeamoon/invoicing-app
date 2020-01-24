@@ -2,7 +2,7 @@ import React from 'react'
 
 import { connect } from '../../utils/helpers'
 
-import { deleteInvoice } from './createInvoicePageActions'
+import { deleteInvoice } from './editInvoicePageActions'
 
 import { EditInvoiceForm } from './components/EditInvoiceForm'
 
@@ -11,8 +11,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  deleteInvoice: (invoice, history) =>
-    deleteInvoice(dispatch, invoice, history),
+  deleteInvoice: (deletedInvoice, history) =>
+    deleteInvoice(dispatch, deletedInvoice, history),
 })
 
 function EditInvoicePage({

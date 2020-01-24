@@ -6,10 +6,10 @@ import {
   Switch,
 } from 'react-router-dom'
 
-import { ROUTER_PATH } from './constants'
+import { ROUTER_PATH } from './utils/constants'
 
 import InvoicesPage from './views/InvoicesPage'
-import { CreateInvoicePage } from './views/CreateInvoicePage'
+import CreateInvoicePage from './views/CreateInvoicePage'
 import EditInvoicePage from './views/EditInvoicePage'
 
 import { InvoiceLayout } from './components/InvoiceLayout'

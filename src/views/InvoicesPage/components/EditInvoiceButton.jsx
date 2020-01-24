@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { ROUTER_PATH } from '../../../constants'
+import { ROUTER_PATH } from '../../../utils/constants'
 
 export function EditInvoiceButton({ invoice }) {
   const history = useHistory()

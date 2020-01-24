@@ -1,10 +1,10 @@
-import React, { useMemo, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import './App.css'
 
 import { InvoiceContext } from './InvoiceContext'
 
 import { Routes } from './Routes.jsx'
-import { INVOICE_ACTION } from './constants'
+import { INVOICE_ACTION } from './utils/constants'
 
 function App() {
   const initialState = {
@@ -40,6 +40,19 @@ function App() {
           ...state,
           invoices: newInvoicesList,
           isDeletingInvoice: false,
+        }
+
+      case INVOICE_ACTION.SET_IS_CREATING_INVOICE:
+        const { isCreatingInvoice } = action.payload
+        return { ...state, isCreatingInvoice }
+
+      case INVOICE_ACTION.CREATE_INVOICE:
+        const { createdInvoice } = action.payload
+
+        return {
+          ...state,
+          invoices: [...state.invoices, createdInvoice],
+          isCreatingInvoice: false,
         }
 
       default:
