@@ -8,7 +8,7 @@ export function InvoiceDetails({ invoice }) {
   return (
     <div>
       <span>{`Name: ${invoice.name}`}</span>
-      <span>{`Email: ${invoice.email}`}: </span>
+      <span>{`Email: ${invoice.email}`}</span>
       <span>{`Due Date: ${invoice.dueDate}`}</span>
       <span>{`Total: $${calculateTotal(amounts)}`}</span>
     </div>

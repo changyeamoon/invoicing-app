@@ -26,9 +26,9 @@ export function InvoiceItemsForm({ invoiceForm, setInvoiceForm }) {
     <div>
       {invoiceForm.invoiceItems.map((invoiceItem, index) => (
         // don't use index as key, bad
-        <div key={invoiceItem.id || index}>
+        <div key={invoiceItem.id || index} data-testid="invoice-item-overview">
           <InputGroup
-            htmlFor="description"
+            htmlFor={`description ${index}`}
             labelText="Description"
             inputType="text"
             inputName="description"
@@ -37,11 +37,11 @@ export function InvoiceItemsForm({ invoiceForm, setInvoiceForm }) {
             onChange={e => updateInvoiceItem(e, index)}
           />
           <InputGroup
-            htmlFor="amount"
+            htmlFor={`amount ${index}`}
             labelText="Amount"
             inputType="number"
             inputName="amount"
-            inputId={`description ${index}`}
+            inputId={`amount ${index}`}
             value={invoiceItem.amount}
             onChange={e => updateInvoiceItem(e, index)}
           />

@@ -5,7 +5,7 @@ import { EditInvoiceButton } from './EditInvoiceButton'
 
 export function InvoiceOverview({ invoice }) {
   return (
-    <div>
+    <div data-testid="invoice-overview">
       <InvoiceDetails invoice={invoice} />
       <EditInvoiceButton invoice={invoice} />
     </div>
