@@ -1,13 +1,7 @@
-import React, { useReducer } from 'react'
-import './App.css'
-
-import { InvoiceContext } from './InvoiceContext'
-
+import { useReducer } from 'react'
 import { INVOICE_ACTION } from './utils/constants'
 
-import { Routes } from './Routes.jsx'
-
-function App() {
+export function appReducer() {
   const initialState = {
     invoices: [],
     isLoadingInvoices: false,
@@ -86,19 +80,4 @@ function App() {
         return state
     }
   }, initialState)
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <span role="img" aria-label="SteelHouse">
-          ⛓🏠
-        </span>
-      </header>
-      <InvoiceContext.Provider value={{ state, dispatch }}>
-        <Routes />
-      </InvoiceContext.Provider>
-    </div>
-  )
 }
-
-export default App

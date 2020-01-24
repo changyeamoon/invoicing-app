@@ -2,16 +2,10 @@ import React, { useContext } from 'react'
 
 import { InvoiceContext } from '../InvoiceContext'
 
-export function calculateTotal(amounts) {
-  let total = 0
-  amounts.forEach(amount => {
-    total += +amount
-  })
-
-  return total
-}
-
-export function connect(mapStateToProps, mapDispatchToProps) {
+/**
+ * @description custom connect function for our poor mans redux
+ */
+export const connect = (mapStateToProps, mapDispatchToProps) => {
   return function(Component) {
     // eslint-disable-next-line react/display-name
     return function(props) {

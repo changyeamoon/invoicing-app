@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { InputGroup } from '../../../components/InputGroup'
-import { CreateInvoiceItemsForm } from './CreateInvoiceItemsForm'
+import { InvoiceForm } from '../../../components/invoiceForm'
 
 export function CreateInvoiceForm({
   isCreatingInvoice,
@@ -16,53 +15,15 @@ export function CreateInvoiceForm({
   })
   const history = useHistory()
 
+  if (isCreatingInvoice) {
+    return <div>amazing loading thing</div>
+  }
+
   return (
     <>
-      <InputGroup
-        htmlFor="name"
-        labelText="Name"
-        inputType="text"
-        inputName="name"
-        inputId="name"
-        value={createInvoiceForm.name}
-        onChange={e => {
-          setCreateInvoiceForm({
-            ...createInvoiceForm,
-            name: e.target.value,
-          })
-        }}
-      />
-      <InputGroup
-        htmlFor="email"
-        labelText="Email"
-        inputType="text"
-        inputName="email"
-        inputId="email"
-        value={createInvoiceForm.email}
-        onChange={e =>
-          setCreateInvoiceForm({
-            ...createInvoiceForm,
-            email: e.target.value,
-          })
-        }
-      />
-      <InputGroup
-        htmlFor="dueDate"
-        labelText="Due Date"
-        inputType="date"
-        inputName="dueDate"
-        inputId="dueDate"
-        value={createInvoiceForm.dueDate}
-        onChange={e =>
-          setCreateInvoiceForm({
-            ...createInvoiceForm,
-            dueDate: e.target.value,
-          })
-        }
-      />
-      <CreateInvoiceItemsForm
-        createInvoiceForm={createInvoiceForm}
-        setCreateInvoiceForm={setCreateInvoiceForm}
+      <InvoiceForm
+        invoiceForm={createInvoiceForm}
+        setInvoiceForm={setCreateInvoiceForm}
       />
       <div>
         <button onClick={history.goBack}>Back</button>

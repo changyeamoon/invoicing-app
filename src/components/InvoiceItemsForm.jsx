@@ -1,45 +1,38 @@
 import React from 'react'
 
-import { calculateTotal } from '../../../utils/helpers'
+import { calculateTotal } from '../utils/helpers'
 
-import { InputGroup } from '../../../components/InputGroup'
+import { InputGroup } from './InputGroup'
 
-export function CreateInvoiceItemsForm({
-  createInvoiceForm,
-  setCreateInvoiceForm,
-}) {
-  let amounts = createInvoiceForm.invoiceItems.map(
-    item => item.amount
-  )
+export function InvoiceItemsForm({ invoiceForm, setInvoiceForm }) {
+  let amounts = invoiceForm.invoiceItems.map(item => item.amount)
 
   const updateInvoiceItem = (event, index) => {
-    setCreateInvoiceForm({
-      ...createInvoiceForm,
-      invoiceItems: createInvoiceForm.invoiceItems.map(
-        (item, idx) => {
-          if (index === idx) {
-            return {
-              ...item,
-              [event.target.name]: event.target.value,
-            }
+    setInvoiceForm({
+      ...invoiceForm,
+      invoiceItems: invoiceForm.invoiceItems.map((item, idx) => {
+        if (index === idx) {
+          return {
+            ...item,
+            [event.target.name]: event.target.value,
           }
-          return item
         }
-      ),
+        return item
+      }),
     })
   }
 
   return (
     <div>
-      {createInvoiceForm.invoiceItems.map((invoiceItem, index) => (
+      {invoiceForm.invoiceItems.map((invoiceItem, index) => (
         // don't use index as key, bad
-        <div key={index}>
+        <div key={invoiceItem.id || index}>
           <InputGroup
             htmlFor="description"
             labelText="Description"
             inputType="text"
             inputName="description"
-            inputId="description"
+            inputId={`description ${index}`}
             value={invoiceItem.description}
             onChange={e => updateInvoiceItem(e, index)}
           />
@@ -48,7 +41,7 @@ export function CreateInvoiceItemsForm({
             labelText="Amount"
             inputType="number"
             inputName="amount"
-            inputId="amount"
+            inputId={`description ${index}`}
             value={invoiceItem.amount}
             onChange={e => updateInvoiceItem(e, index)}
           />
@@ -56,10 +49,10 @@ export function CreateInvoiceItemsForm({
       ))}
       <button
         onClick={() =>
-          setCreateInvoiceForm({
-            ...createInvoiceForm,
+          setInvoiceForm({
+            ...invoiceForm,
             invoiceItems: [
-              ...createInvoiceForm.invoiceItems,
+              ...invoiceForm.invoiceItems,
               { description: '', amount: 0 },
             ],
           })

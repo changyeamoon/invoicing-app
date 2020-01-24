@@ -27,3 +27,30 @@ export async function deleteInvoice(
     payload: { deletedInvoice },
   })
 }
+
+export async function updateAndSaveInvoice(
+  dispatch,
+  updatedInvoice,
+  history
+) {
+  dispatch({
+    type: INVOICE_ACTION.SET_IS_UPDATING_INVOICE,
+    payload: { isUpdatingInvoice: true },
+  })
+
+  // mimic fetching time
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  // do PATCH api stuff
+  const updatedInvoiceIndex = mockInvoices.findIndex(
+    mockInvoice => mockInvoice.id === updatedInvoice.id
+  )
+  mockInvoices.splice(updatedInvoiceIndex, 1)
+  mockInvoices.splice(updatedInvoiceIndex, 0, updatedInvoice)
+
+  history.push(ROUTER_PATH.INVOICES_LIST)
+
+  dispatch({
+    type: INVOICE_ACTION.UPDATE_INVOICE,
+    payload: { updatedInvoice },
+  })
+}
