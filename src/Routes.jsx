@@ -8,9 +8,9 @@ import {
 
 import { ROUTER_PATH } from './constants'
 
-import { InvoicesPage } from './views/InvoicesPage'
+import InvoicesPage from './views/InvoicesPage'
 import { CreateInvoicePage } from './views/CreateInvoicePage'
-import { EditInvoicePage } from './views/EditInvoicePage'
+import EditInvoicePage from './views/EditInvoicePage'
 
 import { InvoiceLayout } from './components/InvoiceLayout'
 

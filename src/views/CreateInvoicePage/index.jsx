@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { InvoiceForm } from '../../components/InvoiceForm'
+import { CreateInvoiceForm } from './components/CreateInvoiceForm'
 
 export function CreateInvoicePage() {
   return (
     <div>
-      <InvoiceForm />
+      <CreateInvoiceForm />
     </div>
   )
 }

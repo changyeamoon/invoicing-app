@@ -1,25 +1,48 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
+
+import { connect } from '../../utils/helpers'
+
+import { getAndStoreInvoices } from './invoicesPageActions'
 
 import { CreateInvoiceButton } from './components/CreateInvoiceButton'
 import { InvoicesList } from './components/InvoicesList'
-import { getInvoices } from './actions'
 
-export function InvoicesPage() {
-  const [isInvoicesLoading, setIsInvoicesLoading] = useState(false)
-  const [invoices, setInvoices] = useState([])
+const mapStateToProps = state => ({
+  invoices: state.invoices,
+  isLoadingInvoices: state.isLoadingInvoices,
+})
 
+const mapDispatchToProps = dispatch => ({
+  getAndStoreInvoices: () => getAndStoreInvoices(dispatch),
+})
+
+function InvoicesPage({
+  //mapStateToProps
+  invoices,
+  isLoadingInvoices,
+  // mapDispatchToProps
+  getAndStoreInvoices,
+}) {
   useEffect(() => {
-    setInvoices(getInvoices())
+    getAndStoreInvoices()
   }, [])
 
-  return (
-    <div>
-      <CreateInvoiceButton />
-      {isInvoicesLoading ? (
-        <div>sick loading icon</div>
-      ) : (
-        <InvoicesList invoices={invoices} />
-      )}
-    </div>
+  return useMemo(
+    () => (
+      <div>
+        <CreateInvoiceButton />
+        {isLoadingInvoices ? (
+          <div>sick loading icon</div>
+        ) : (
+          <InvoicesList invoices={invoices} />
+        )}
+      </div>
+    ),
+    [invoices]
   )
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InvoicesPage)
