@@ -58,7 +58,7 @@ function InvoicesPage({
         )}
       </div>
     ),
-    [invoices, isLoadingInvoices]
+    [invoices, isLoadingInvoices, history]
   )
 }
 
