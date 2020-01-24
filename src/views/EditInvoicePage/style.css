@@ -1,0 +1,18 @@
+.buttons-edit {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}
+
+.back-btn{
+    background-color: #E59500;
+}
+
+.delete-btn{
+    background-color: #840032;
+    color: #fffff1;
+}
+
+.save-btn{
+    background-color: #E5DADA;
+}

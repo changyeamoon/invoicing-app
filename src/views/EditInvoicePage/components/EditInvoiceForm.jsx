@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { InvoiceForm } from '../../../components/invoiceForm'
+import { Button } from '../../../lib/components/Buttons'
+
+import '../style.css'
 
 export function EditInvoiceForm({
   invoice,
@@ -24,22 +27,26 @@ export function EditInvoiceForm({
         invoiceForm={editInvoiceForm}
         setInvoiceForm={setEditInvoiceForm}
       />
-      <div>
-        <button onClick={history.goBack}>Back</button>
-        <button
+      <div className="buttons-edit">
+        <Button className="back-btn" onClick={history.goBack}>
+          Back
+        </Button>
+        <Button
+          className="delete-btn"
           onClick={() => {
             deleteInvoice(invoice, history)
           }}
         >
           Delete
-        </button>
-        <button
+        </Button>
+        <Button
+          className="save-btn"
           onClick={() =>
             updateAndSaveInvoice(editInvoiceForm, history)
           }
         >
           Save
-        </button>
+        </Button>
       </div>
     </>
   )

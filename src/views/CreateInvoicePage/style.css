@@ -1,0 +1,14 @@
+.buttons-create {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.back-btn{
+    background-color: #002A22;
+    color: #fffff1;
+}
+
+.save-btn{
+    background-color: #03012C;
+}

@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { connect } from '../../utils/helpers'
 
+import { ROUTER_PATH } from '../../utils/constants'
+
 import { getAndStoreInvoices } from './invoicesPageActions'
 
-import { CreateInvoiceButton } from './components/CreateInvoiceButton'
 import { InvoicesList } from './components/InvoicesList'
+import { Button } from '../../lib/components/Buttons'
+
+import './style.css'
 
 const mapStateToProps = state => ({
   invoices: state.invoices,
@@ -23,6 +28,8 @@ function InvoicesPage({
   // mapDispatchToProps
   getAndStoreInvoices,
 }) {
+  const history = useHistory()
+
   useEffect(() => {
     getAndStoreInvoices()
     /*
@@ -37,8 +44,13 @@ function InvoicesPage({
 
   return useMemo(
     () => (
-      <div>
-        <CreateInvoiceButton />
+      <div className="grid-container">
+        <Button
+          className="create-button"
+          onClick={() => history.push(ROUTER_PATH.CREATE_INVOICE)}
+        >
+          Create Invoice
+        </Button>
         {isLoadingInvoices ? (
           <div>sick loading icon</div>
         ) : (

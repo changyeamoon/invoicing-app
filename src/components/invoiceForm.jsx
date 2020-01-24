@@ -1,11 +1,18 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import { InputGroup } from './InputGroup'
+import { InputGroup } from '../lib/components/InputGroup'
 import { InvoiceItemsForm } from './InvoiceItemsForm'
+
+const Form = styled.div`
+  display: grid;
+  grid-gap: 1.5rem;
+  padding: 1.5rem;
+`
 
 export function InvoiceForm({ invoiceForm, setInvoiceForm }) {
   return (
-    <div>
+    <Form>
       <InputGroup
         htmlFor="name"
         labelText="Name"
@@ -52,6 +59,6 @@ export function InvoiceForm({ invoiceForm, setInvoiceForm }) {
         invoiceForm={invoiceForm}
         setInvoiceForm={setInvoiceForm}
       />
-    </div>
+    </Form>
   )
 }

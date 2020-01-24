@@ -29,7 +29,7 @@ describe('<InvoicesPage/>', () => {
       )
     })
 
-    describe('CreateInvoiceButton', () => {
+    describe('Create Invoice Button', () => {
       it('should display correct button', () => {
         getByText('Create Invoice')
       })

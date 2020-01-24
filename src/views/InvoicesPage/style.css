@@ -1,0 +1,34 @@
+.grid-container {
+    display: grid;
+    grid-gap: 1rem 0;
+    padding: 0 1rem;
+}
+
+.create-button {
+    height: 2rem;
+    justify-self: center;
+    align-self: center;
+    color: #b33c86;
+    background: #fffff1;
+    border: 1px solid #b33c86;
+    position: sticky;
+    top: 0;
+}
+
+.create-button:hover {
+    border-color: #fffff1;
+}
+
+.edit-button {
+
+    width: 5rem;
+    height: 2rem;
+    justify-self: end;
+    align-self: end;
+    color: #fffff1;
+    background-color: #b33c86;
+}
+
+.edit-button:hover {
+     background-color: #dd4ba5;
+ }
