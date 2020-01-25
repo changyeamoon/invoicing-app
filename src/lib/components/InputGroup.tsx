@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, { ChangeEventHandler } from 'react'
 import styled from 'styled-components'
 
 const Group = styled.div`
@@ -8,6 +7,17 @@ const Group = styled.div`
   justify-items: start;
   align-items: center;
 `
+
+type InputGroupProps = {
+  textarea?: boolean
+  htmlFor: string
+  labelText: string
+  inputType: string
+  inputName: string
+  inputId: string
+  value: string | string[] | number
+  onChange: ChangeEventHandler
+}
 
 export function InputGroup({
   textarea,
@@ -19,7 +29,7 @@ export function InputGroup({
   value,
   onChange,
   ...restProps
-}) {
+}: InputGroupProps) {
   return (
     <Group>
       <label htmlFor={htmlFor}>{labelText}</label>

@@ -2,7 +2,7 @@ export const ROUTER_PATH = {
   INVOICES_LIST: '/invoices-list',
   CREATE_INVOICE: '/create-invoice',
   EDIT_INVOICE: '/edit-invoice',
-}
+} as const
 
 export const INVOICE_ACTION = {
   SET_IS_LOADING_INVOICES: 'invoices/SET_IS_LOADING_INVOICES',
@@ -13,4 +13,4 @@ export const INVOICE_ACTION = {
   DELETE_INVOICE: 'invoices/DELETE_INVOICE',
   SET_IS_CREATING_INVOICE: 'invoices/SET_IS_CREATING_INVOICE',
   CREATE_INVOICE: 'invoices/CREATE_INVOICE',
-}
+} as const

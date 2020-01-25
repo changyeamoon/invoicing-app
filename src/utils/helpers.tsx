@@ -1,19 +1,26 @@
-import React, { useContext, useReducer } from 'react'
-import { Router, Route } from 'react-router-dom'
+import * as React from 'react'
 import { createMemoryHistory } from 'history'
 import { render } from '@testing-library/react'
 
+// types
+import { ComponentClass } from 'react'
+import { Router, Route } from 'react-router-dom'
+
+// misc
 import { InvoiceContext } from '../InvoiceContext'
-import { appReducer, initialState } from '../appReducer'
+import { invoiceReducer, initialState } from '../invoiceReducer'
 
 /**
  * @description custom connect function for our poor mans redux
  */
-export const connect = (mapStateToProps, mapDispatchToProps) => {
-  return function(Component) {
+export const connect = (
+  mapStateToProps: Function,
+  mapDispatchToProps: Function
+) => {
+  return function(Component: any) {
     // eslint-disable-next-line react/display-name
-    return function(props) {
-      const { state, dispatch } = useContext(InvoiceContext)
+    return function(props: Object) {
+      const { state, dispatch } = React.useContext(InvoiceContext)
       const stateToProps = mapStateToProps(state)
       const dispatchToProps = mapDispatchToProps(dispatch)
       const newProps = {
@@ -29,7 +36,9 @@ export const connect = (mapStateToProps, mapDispatchToProps) => {
 /**
  * @description calculates total amount from array of number or string represented numbers
  */
-export const calculateTotal = amounts => {
+export const calculateTotal = (
+  amounts: Array<number | string>
+): number => {
   let total = 0
   amounts.forEach(amount => {
     total += +amount
@@ -42,22 +51,23 @@ export const calculateTotal = amounts => {
  * @description Will return a wrapped component that has the context and router configured
  */
 export const wrappedRender = (
-  Component,
+  Component: any,
   routeConfig = {
-    basename: `/`,
     path: '/',
     route: '/',
   },
   options = {}
 ) => {
-  const { basename, path, route } = routeConfig
+  const { path, route } = routeConfig
   const history = createMemoryHistory({
-    basename,
     initialEntries: [route],
   })
 
-  const Providers = ({ children }) => {
-    const [state, dispatch] = useReducer(appReducer, initialState)
+  const Providers = ({ children }: { children: ComponentClass }) => {
+    const [state, dispatch] = React.useReducer(
+      invoiceReducer,
+      initialState
+    )
 
     return (
       <InvoiceContext.Provider value={{ state, dispatch }}>
@@ -69,6 +79,7 @@ export const wrappedRender = (
   }
 
   return {
+    // @ts-ignore
     ...render(() => Component, {
       wrapper: Providers,
       ...options,

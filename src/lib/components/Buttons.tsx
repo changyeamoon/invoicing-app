@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 import styled from 'styled-components'
 
 const StyledButton = styled.div.attrs(props => ({
@@ -21,8 +21,19 @@ const StyledButton = styled.div.attrs(props => ({
   }
 `
 
-export function Button({ onClick, children, className }) {
+type ButtonsProps = {
+  onClick: ChangeEventHandler
+  children: React.ReactNode
+  className: string
+}
+
+export function Button({
+  onClick,
+  children,
+  className,
+}: ButtonsProps) {
   return (
+    // @ts-ignore
     <StyledButton onClick={onClick} className={className}>
       {children}
     </StyledButton>

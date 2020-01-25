@@ -1,10 +1,22 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
+// types
+import { InvoiceDTO } from '../../../utils/types'
+
+// components
 import { InvoiceForm } from '../../../components/invoiceForm'
 import { Button } from '../../../lib/components/Buttons'
 
 import '../style.css'
+
+type EditInvoiceFormProps = {
+  invoice: InvoiceDTO
+  deleteInvoice: Function
+  isDeletingInvoice: Boolean
+  updateAndSaveInvoice: Function
+  isUpdatingInvoice: Boolean
+}
 
 export function EditInvoiceForm({
   invoice,
@@ -12,8 +24,10 @@ export function EditInvoiceForm({
   isDeletingInvoice,
   updateAndSaveInvoice,
   isUpdatingInvoice,
-}) {
-  const [editInvoiceForm, setEditInvoiceForm] = useState(invoice)
+}: EditInvoiceFormProps) {
+  const [editInvoiceForm, setEditInvoiceForm] = useState<InvoiceDTO>(
+    invoice
+  )
 
   const history = useHistory()
 

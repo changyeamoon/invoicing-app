@@ -1,8 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// types
+import { InvoiceDTO } from '../utils/types'
+
+// helpers
 import { calculateTotal } from '../utils/helpers'
 
+// components
 import { InputGroup } from '../lib/components/InputGroup'
 
 const Form = styled.div`
@@ -20,31 +25,42 @@ const Details = styled.div`
 `
 
 const PlusButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem 0.4rem;
   border-color: #190e4f;
   font-size: 1rem;
   border-radius: 1rem;
   cursor: pointer;
   font-weight: 700;
   width: 2rem;
+  height: 2rem;
 `
 const Total = styled.span`
   font-size: 3rem;
 `
 
-export function InvoiceItemsForm({ invoiceForm, setInvoiceForm }) {
-  let amounts = invoiceForm.invoiceItems.map(item => item.amount)
+type InvoiceItemsFormProps = {
+  invoiceForm: InvoiceDTO
+  setInvoiceForm: Function
+}
 
-  const updateInvoiceItem = (event, index) => {
+export function InvoiceItemsForm({
+  invoiceForm,
+  setInvoiceForm,
+}: InvoiceItemsFormProps) {
+  let amounts: Array<number | string> = invoiceForm.invoiceItems.map(
+    item => item.amount
+  )
+
+  const updateInvoiceItem = (
+    event: React.ChangeEvent<Element>,
+    index: number
+  ): void => {
     setInvoiceForm({
       ...invoiceForm,
       invoiceItems: invoiceForm.invoiceItems.map((item, idx) => {
         if (index === idx) {
           return {
             ...item,
+            // @ts-ignore
             [event.target.name]: event.target.value,
           }
         }
@@ -72,6 +88,7 @@ export function InvoiceItemsForm({ invoiceForm, setInvoiceForm }) {
             onChange={e => updateInvoiceItem(e, index)}
           />
           <InputGroup
+            textarea={false}
             htmlFor={`amount ${index}`}
             labelText="Amount"
             inputType="number"

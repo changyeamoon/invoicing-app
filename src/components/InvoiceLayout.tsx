@@ -38,7 +38,11 @@ const Body = styled.div`
   position: relative;
 `
 
-export function InvoiceLayout({ children }) {
+type InvoiceLayoutProps = {
+  children: React.ReactNode
+}
+
+export function InvoiceLayout({ children }: InvoiceLayoutProps) {
   return (
     <Layout>
       <Header>Invoice App</Header>

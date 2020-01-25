@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
+// types
+import { InvoiceDTO } from '../../../utils/types'
+
+// components
 import { InvoiceForm } from '../../../components/invoiceForm'
 import { Button } from '../../../lib/components/Buttons'
 
+// styles
 import '../style.css'
+
+type CreateInvoiceFormProps = {
+  isCreatingInvoice: Boolean
+  createAndSaveInvoice: Function
+}
 
 export function CreateInvoiceForm({
   isCreatingInvoice,
   createAndSaveInvoice,
-}) {
-  const [createInvoiceForm, setCreateInvoiceForm] = useState({
+}: CreateInvoiceFormProps) {
+  const [createInvoiceForm, setCreateInvoiceForm] = useState<
+    InvoiceDTO
+  >({
     name: '',
     email: '',
     dueDate: '',

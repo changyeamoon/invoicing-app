@@ -1,15 +1,17 @@
 import React, { useReducer } from 'react'
 
+// misc
 import { InvoiceContext } from './InvoiceContext'
+import { invoiceReducer, initialState } from './invoiceReducer'
 
-import { appReducer, initialState } from './appReducer'
+// components
+import { Routes } from './Routes'
 
-import { Routes } from './Routes.jsx'
-
+// styles
 import './App.css'
 
 function App() {
-  const [state, dispatch] = useReducer(appReducer, initialState)
+  const [state, dispatch] = useReducer(invoiceReducer, initialState)
 
   return (
     <div className="App">

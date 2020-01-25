@@ -1,12 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 
+// types
+import { InvoiceDTO } from '../../../utils/types'
+
+//constants
 import { ROUTER_PATH } from '../../../utils/constants'
 
+// components
 import { InvoiceDetails } from './InvoiceDetails'
 import { Button } from '../../../lib/components/Buttons'
 
+// styles
 import '../style.css'
 
 const GridDiv = styled.div`
@@ -20,8 +26,11 @@ const GridDiv = styled.div`
     background: #eee;
   }
 `
+type InvoiceOverviewProps = {
+  invoice: InvoiceDTO
+}
 
-export function InvoiceOverview({ invoice }) {
+export function InvoiceOverview({ invoice }: InvoiceOverviewProps) {
   const history = useHistory()
 
   return (

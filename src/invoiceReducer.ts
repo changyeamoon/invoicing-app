@@ -1,6 +1,15 @@
 import { INVOICE_ACTION } from './utils/constants'
+import { Action, InvoiceDTO } from './utils/types'
 
-export const initialState = {
+export type InvoiceState = Readonly<{
+  invoices: InvoiceDTO[]
+  isLoadingInvoices: boolean
+  isDeletingInvoice: boolean
+  isCreatingInvoice: boolean
+  isUpdatingInvoice: boolean
+}>
+
+export const initialState: InvoiceState = {
   invoices: [],
   isLoadingInvoices: false,
   isDeletingInvoice: false,
@@ -8,7 +17,10 @@ export const initialState = {
   isUpdatingInvoice: false,
 }
 
-export const appReducer = (state, action) => {
+export const invoiceReducer = (
+  state: InvoiceState = initialState,
+  action: Action
+): InvoiceState => {
   switch (action.type) {
     case INVOICE_ACTION.SET_IS_LOADING_INVOICES:
       const { isLoadingInvoices } = action.payload

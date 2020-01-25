@@ -1,25 +1,41 @@
 import React from 'react'
 
+// types
+import { Dispatch } from 'react'
+import { Action, InvoiceDTO } from '../../utils/types'
+import { InvoiceState as ReduxState } from '../../invoiceReducer'
+import { History } from 'history'
+
+// helpers
 import { connect } from '../../utils/helpers'
 
+// actions
 import {
   deleteInvoice,
   updateAndSaveInvoice,
 } from './editInvoicePageActions'
 
+// components
 import { EditInvoiceForm } from './components/EditInvoiceForm'
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: ReduxState) => ({
   isDeletingInvoice: state.isDeletingInvoice,
   isUpdatingInvoice: state.isUpdatingInvoice,
 })
 
-const mapDispatchToProps = dispatch => ({
-  deleteInvoice: (deletedInvoice, history) =>
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+  deleteInvoice: (deletedInvoice: InvoiceDTO, history: History) =>
     deleteInvoice(dispatch, deletedInvoice, history),
-  updateAndSaveInvoice: (updatedInvoice, history) =>
-    updateAndSaveInvoice(dispatch, updatedInvoice, history),
+  updateAndSaveInvoice: (
+    updatedInvoice: InvoiceDTO,
+    history: History
+  ) => updateAndSaveInvoice(dispatch, updatedInvoice, history),
 })
+
+type PassedProps = { location: { state: { invoice: InvoiceDTO } } }
+type EditInvoicePageProps = PassedProps &
+  ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>
 
 function EditInvoicePage({
   location: {
@@ -31,7 +47,7 @@ function EditInvoicePage({
   // mapDispatchToProps
   deleteInvoice,
   updateAndSaveInvoice,
-}) {
+}: EditInvoicePageProps) {
   return (
     <div>
       <EditInvoiceForm

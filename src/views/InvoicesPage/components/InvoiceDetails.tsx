@@ -1,6 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// types
+import { InvoiceDTO } from '../../../utils/types'
+
+// helpers
 import { calculateTotal } from '../../../utils/helpers'
 
 const Details = styled.div`
@@ -9,8 +13,14 @@ const Details = styled.div`
   justify-items: start;
 `
 
-export function InvoiceDetails({ invoice }) {
-  const amounts = invoice.invoiceItems.map(item => item.amount)
+type InvoiceDetailsProps = {
+  invoice: InvoiceDTO
+}
+
+export function InvoiceDetails({ invoice }: InvoiceDetailsProps) {
+  const amounts: Array<number | string> = invoice.invoiceItems.map(
+    item => item.amount
+  )
 
   return (
     <Details>

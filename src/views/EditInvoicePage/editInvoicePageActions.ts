@@ -1,12 +1,18 @@
 import mockInvoices from '../../utils/mockInvoices.json'
 
+// types
+import { Action, InvoiceDTO } from '../../utils/types'
+import { Dispatch } from 'react'
+import { History } from 'history'
+
+// constants
 import { INVOICE_ACTION, ROUTER_PATH } from '../../utils/constants'
 
 export async function deleteInvoice(
-  dispatch,
-  deletedInvoice,
-  history
-) {
+  dispatch: Dispatch<Action>,
+  deletedInvoice: InvoiceDTO,
+  history: History
+): Promise<void> {
   dispatch({
     type: INVOICE_ACTION.SET_IS_DELETING_INVOICE,
     payload: { isDeletingInvoice: true },
@@ -15,7 +21,7 @@ export async function deleteInvoice(
   // mimic fetching time
   await new Promise(resolve => setTimeout(resolve, 1000))
   // do DELETE api stuff
-  const invoiceIndex = mockInvoices.findIndex(
+  const invoiceIndex: number = mockInvoices.findIndex(
     mockInvoice => mockInvoice.id === deletedInvoice.id
   )
   mockInvoices.splice(invoiceIndex, 1)
@@ -29,10 +35,10 @@ export async function deleteInvoice(
 }
 
 export async function updateAndSaveInvoice(
-  dispatch,
-  updatedInvoice,
-  history
-) {
+  dispatch: Dispatch<Action>,
+  updatedInvoice: InvoiceDTO,
+  history: History
+): Promise<void> {
   dispatch({
     type: INVOICE_ACTION.SET_IS_UPDATING_INVOICE,
     payload: { isUpdatingInvoice: true },
@@ -41,10 +47,11 @@ export async function updateAndSaveInvoice(
   // mimic fetching time
   await new Promise(resolve => setTimeout(resolve, 1000))
   // do PATCH api stuff
-  const updatedInvoiceIndex = mockInvoices.findIndex(
+  const updatedInvoiceIndex: number = mockInvoices.findIndex(
     mockInvoice => mockInvoice.id === updatedInvoice.id
   )
   mockInvoices.splice(updatedInvoiceIndex, 1)
+  // @ts-ignore
   mockInvoices.splice(updatedInvoiceIndex, 0, updatedInvoice)
 
   history.push(ROUTER_PATH.INVOICES_LIST)

@@ -1,25 +1,44 @@
-import React, { useEffect, useMemo } from 'react'
+import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { connect } from '../../utils/helpers'
+// types
+import { Dispatch } from 'react'
+import { Action } from '../../utils/types'
+/*
+ usually there is a rootReducer that will combine all the reducers,
+ since this is a poor man's redux, and YAGNI there's just invoice reducer
+ */
+import { InvoiceState as ReduxState } from '../../invoiceReducer'
 
+// constants
 import { ROUTER_PATH } from '../../utils/constants'
 
+// helpers
+import { connect } from '../../utils/helpers'
+
+// actions (aka business logic)
 import { getAndStoreInvoices } from './invoicesPageActions'
 
+// components
 import { InvoicesList } from './components/InvoicesList'
 import { Button } from '../../lib/components/Buttons'
 
+// styles
 import './style.css'
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: ReduxState) => ({
   invoices: state.invoices,
   isLoadingInvoices: state.isLoadingInvoices,
 })
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
   getAndStoreInvoices: () => getAndStoreInvoices(dispatch),
 })
+
+type PassedProps = {}
+type InvoicesPageProps = PassedProps &
+  ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>
 
 function InvoicesPage({
   //mapStateToProps
@@ -27,10 +46,10 @@ function InvoicesPage({
   isLoadingInvoices,
   // mapDispatchToProps
   getAndStoreInvoices,
-}) {
+}: InvoicesPageProps) {
   const history = useHistory()
 
-  useEffect(() => {
+  React.useEffect(() => {
     getAndStoreInvoices()
     /*
      normally we need to hoist the getAndStoreInvoices function inside of the useEffect,
@@ -42,7 +61,7 @@ function InvoicesPage({
     // eslint-disable-next-line
   }, [])
 
-  return useMemo(
+  return React.useMemo(
     () => (
       <div className="grid-container">
         <Button
